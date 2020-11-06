@@ -3,7 +3,7 @@ import { HeroeMOdel } from '../models/heroe.model';
 //step3: import { HttpClient } from '@angular/common/http'; in the service file
 import { HttpClient } from '@angular/common/http';
 //step6: import mapOperator, the map transform the data i receiv
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -27,8 +27,16 @@ export class HeroesService {
         )
     );
   }
-  //this .json i add in the end of the link is only in firebase
 
+  deleteHeroe(Id: string) {
+    return this.http.delete(`${this.url}/heroes/${Id}.json`);
+  }
+
+  gethHeroeData(Id: string) {
+    return this.http.get(`${this.url}/heroes/${Id}.json`);
+  }
+
+  //this .json i add in the end of the link is only in firebase
   updateHeroe(heroe: HeroeMOdel) {
     const heroeTemp = {
       ...heroe,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HeroeMOdel } from 'src/app/models/heroe.model';
 import { HeroesService } from 'src/app/services/heroes.service';
@@ -14,9 +15,17 @@ export class HeroeComponent implements OnInit {
   heroe: HeroeMOdel = new HeroeMOdel();
 
   //step 4:heroeComponent.ts call the service in the constructor
-  constructor(private hS: HeroesService) {}
+  constructor(private hS: HeroesService, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id !== 'new') {
+      this.hS.gethHeroeData(id).subscribe((resp: HeroeMOdel) => {
+        this.heroe = resp;
+        this.heroe.Id = id;
+      });
+    }
+  }
   //this form is the form where i have the inputs data
   save(form: NgForm) {
     if (form.invalid) {
