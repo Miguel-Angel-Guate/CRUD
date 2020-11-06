@@ -14,17 +14,27 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Skill</th>
-      <th scope="col">status</th>
+      <th scope="col">live</th>
       <th scope="col">Tools</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngFor="let heroe of heroes; let i = index">
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+      <th scope="row">{{ i + 1}}</th>
+      <td>{{heroe.name}}</td>
+      <td>{{heroe.skill}}</td>
+      <td>
+        <label *ngIf="heroe.live" class="badge badge-success">live</label>
+        <label *ngIf="!heroe.live" class="badge badge-danger">die</label>
+      </td>
+      <td>
+        <button class="btn btn-info mr-1" [routerLink]="['/heroe', heroe.Id]">
+          <i class="fa fa-pen"></i>
+        </button>
+        <button class="btn btn-danger ">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
     </tr>
 
 </table>

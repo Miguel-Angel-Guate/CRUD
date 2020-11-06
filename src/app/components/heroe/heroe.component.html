@@ -8,53 +8,44 @@
     </button>
   </div>
 </div>
+
 <div class="row">
   <div class="col">
-    <form>
+    <form (ngSubmit)="save(refenceONe)" #refenceONe='ngForm'>
       <div class="form-group">
         <label>Firebase Id</label>
-        <input type="text" class="form-control" disabled="disabled" placeholder="Firebase Id" />
+        <input type="text" class="form-control" disabled="disabled" placeholder="Firebase Id" [(ngModel)]="heroe.Id"
+          name="firebaseId" required />
         <small class="form-text text-muted">this camp...</small>
+      </div>
+
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" placeholder="Heroe name" [(ngModel)]="heroe.name" name="name"
+          required />
+      </div>
+      <div class="form-group">
+        <label>skill</label>
+        <input type="text" class="form-control" placeholder="Heroe skill" [(ngModel)]="heroe.skill" name="skill"
+          required />
+      </div>
+      <div class="form-group">
+        <label>live</label>
+        <br>
+        <button *ngIf="heroe.live" (click)="heroe.live = false" class="btn btn-outline-success w-50 ">
+          <i class="fa fa-smile-wink"></i>
+          live
+        </button>
+        <button *ngIf="!heroe.live" (click)="heroe.live = true" class="btn btn-outline-danger w-50 ">
+          <i class="fa fa-dizzy"></i>
+          die
+        </button>
+
+      </div>
+      <hr>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary w-25"><i class="fa fa-save"></i>Save</button>
       </div>
     </form>
   </div>
 </div>
-
-<div class="row">
-  <div class="col">
-
-    <div class="form-group">
-      <label>Name</label>
-      <input type="text" class="form-control" placeholder="Heroe name" required />
-    </div>
-
-  </div>
-</div>
-<form>
-  <div class="row">
-    <div class="col">
-
-      <div class="form-group">
-        <label>skill</label>
-        <input type="text" class="form-control" placeholder="Heroe skill" />
-      </div>
-      <div class="form-group">
-        <label>Status</label>
-        <br>
-        <button class="btn btn-outline-success w-50 ">
-          <i class="fa fa-smile-wink"></i>
-          live
-        </button>
-        <button class="btn btn-outline-danger w-50 ">
-          <i class="fa fa-dizzy"></i>
-          die
-        </button>
-      </div>
-
-    </div>
-  </div>
-  <hr>
-  <div class="form-group text-center">
-    <button type="submit" class="btn btn-primary w-25"><i class="fa fa-save"></i>Save</button>
-  </div>
-</form>
